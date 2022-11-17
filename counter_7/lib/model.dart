@@ -11,4 +11,5 @@ class MyBudget {
     this.dateTime
   );
 }
-List<MyBudget> listBudget = <MyBudget>[]; // List untuk menyimpan data 
+// List untuk menyimpan data dari form
+List<MyBudget> listBudget = <MyBudget>[];

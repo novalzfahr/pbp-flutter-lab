@@ -1,6 +1,6 @@
 import 'package:tugas_flutter/formBudget.dart';
 import 'package:tugas_flutter/displayBudget.dart';
-import 'package:tugas_flutter/models.dart';
+import 'package:tugas_flutter/model.dart';
 import 'package:tugas_flutter/main.dart';
 import 'package:flutter/material.dart';
 
