@@ -1,6 +1,8 @@
-import 'package:tugas_flutter/formBudget.dart';
-import 'package:tugas_flutter/displayBudget.dart';
-import 'package:tugas_flutter/model.dart';
+import 'package:tugas_flutter/Page/formBudget.dart';
+import 'package:tugas_flutter/Page/displayBudget.dart';
+import 'package:tugas_flutter/model/modelBudget.dart';
+import 'package:tugas_flutter/Page/myWatchList.dart';
+import 'package:tugas_flutter/Page/myWatchListDetail.dart';
 import 'package:tugas_flutter/main.dart';
 import 'package:flutter/material.dart';
 
@@ -40,6 +42,16 @@ class MyDrawer extends StatelessWidget{
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => const MyDisplayBudgetPage()),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text('My Watch List'),
+            onTap: () {
+              // Route menu ke halaman form
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const MyWatchListPage()),
               );
             },
           ),

@@ -170,3 +170,81 @@ class _MyDisplayBudgetPageState extends State<MyDisplayBudgetPage> {
   }
 }
 ```
+
+# Tugas 9
+**1. Apakah bisa kita melakukan pengambilan data JSON tanpa membuat model terlebih dahulu? Jika iya, apakah hal tersebut lebih baik daripada membuat model sebelum melakukan pengambilan data JSON?**
+- Ya, kita bisa mendapatkan data JSON tanpa terlebih dahulu membuat model. Kita dapat membuat *dynamic map* dari JSON dan mengakses nilainya dengan *dictionary* pada python. Namun, itu tidak dianjurkan karena kita tidak akan tahu apakah ada field yang hilang atau jika field tersebut tidak sesuai dengan yang kita inginkan sehingga sulit untuk mendeteksi  kesalahan dan tidak tahu data apa yang diambil.
+
+**2. Sebutkan widget apa saja yang kamu pakai di proyek kali ini dan jelaskan fungsinya.**
+- `GestureDetector`: Widget ini, kita bisa menentukan event apa saja dan function yang merespon pada widget child nya.
+- `Checkbox`: Untuk membuat *clickable checkbox* yang mengubah nilai `true` -> `false` dan sebaliknya.
+- `FutureBuilder`: Widget yang membangun sendiri berdasarkan objek `Future` terakhir yang diterima.
+- `ListTile`: Widget yang digunakan untuk membuat list.
+- `BoxShadow`: widget ini mengatur efek bayangan yang ada pada box.
+- `TextButton`: Widget ini untuk membuat tombol.
+
+**3. Jelaskan mekanisme pengambilan data dari json hingga dapat ditampilkan pada Flutter.**
+- Data diambil melalui HTTP melalui metode `fetchWatchlist`, yang memanggil fungsi get menggunakan HTTP *instances*. Fungsi ini  me*return* list MyWatchlist. `FutureBuilder` akan menjalankan fungsi dan menunggunya kembali. Saat data diperoleh, FutureBuilder *return* `ListView.builder`, yang *builds* `ListTiles` dari data yang telah dipetakan yang di*return* oleh metode `fetchWatchlist`.
+
+**4. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas.**
+- Membuat tombol navigasi
+```
+ListTile(
+  title: const Text('My Watch List'),
+  onTap: () {
+    // Route menu ke halaman form
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => const MyWatchListPage()),
+    );
+  },
+),
+...
+```
+- Membuat file `mywatchlist.dart` untuk menyimpan model
+- Membuat `myWatchList.dart` dan `myWatchListDetail.dart` untuk menampilkan data dari json.
+- Membuat navigator untuk ke halaman myWatchList detail
+```
+onTap: () => {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) =>
+      WatchlistDetailPage(
+        watchlistData: snapshot.data![index],
+      )
+  ))
+},
+...
+```
+- Membuat *checkbox* untuk bagian bonus
+```
+Checkbox(
+  value: watchStatus[index],
+  onChanged: (value) {
+    setState(() {
+      watchStatus[index] = value!;
+    });
+  }
+)
+...
+```
+- Menambahkan outline dengan dua warna berbeda berdasarkan status ditontonnya.
+```
+decoration: BoxDecoration(
+    color:Colors.white,
+    border: Border.all(
+      color: (watchStatus[index]) ? Colors.greenAccent: Colors.redAccent,
+      width: 3.5
+    ),
+    borderRadius: BorderRadius.circular(15.0),
+    boxShadow: const [
+    BoxShadow(
+        color: Colors.black,
+        blurRadius: 2.0
+    )
+    ]
+),
+...
+```
+- Refactor fungsi fetch ke dalam file `fetchDataWatchlist.dart`.
+

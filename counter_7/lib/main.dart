@@ -1,5 +1,5 @@
-import 'package:tugas_flutter/formBudget.dart';
-import 'package:tugas_flutter/displayBudget.dart';
+import 'package:tugas_flutter/Page/formBudget.dart';
+import 'package:tugas_flutter/Page/displayBudget.dart';
 import 'package:tugas_flutter/drawer.dart';
 import 'package:flutter/material.dart';
 
